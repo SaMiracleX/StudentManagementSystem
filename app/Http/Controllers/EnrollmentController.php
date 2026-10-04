@@ -3,21 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
-use App\Models\Course;
+use App\Models\Enrollment;
 use Illuminate\View\View;
 
-class CourseController extends Controller
+class EnrollmentController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $courses = Course::all();
-        return view ('courses.index')->with('courses',$courses);
+        $enrollments = Enrollment::all();
+        return view('enrollments.index')->with('enrollments', $enrollments);
     }
 
     /**
@@ -25,7 +24,7 @@ class CourseController extends Controller
      */
     public function create(): View
     {
-        return view ('courses.create');
+        return view('enrollments.create');
     }
 
     /**
@@ -34,8 +33,8 @@ class CourseController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $input = $request->all();
-        Course::create($input);
-        return redirect('courses')->with('flash_message', 'Course Added!');
+        Enrollment::create($input);
+        return redirect('enrollments')->with('flash_message', 'Enrollment Added!');
     }
 
     /**
@@ -43,17 +42,17 @@ class CourseController extends Controller
      */
     public function show(string $id): View
     {
-        $courses = Course::find($id);
-        return view('courses.show')->with('courses', $courses);
+        $enrollments = Enrollment::find($id);
+        return view('enrollments.show')->with('enrollments', $enrollments);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id): View
+    public function edit(string $id)
     {
-        $courses = Course::find($id);
-        return view('courses.edit')->with('courses', $courses);
+        $enrollment = Enrollment::find($id);
+        return view('enrollments.edit')->with('enrollment', $enrollment);
     }
 
     /**
@@ -61,10 +60,10 @@ class CourseController extends Controller
      */
     public function update(Request $request, string $id): RedirectResponse
     {
-        $courses = Course::find($id);
+        $enrollment = Enrollment::find($id);
         $input = $request->all();
-        $courses ->update($input);
-        return redirect('courses')->with('flash_message', 'Course Updated!');
+        $enrollment->update($input);
+        return redirect('enrollments')->with('flash_message', 'Enrollment Updated!');
     }
 
     /**
@@ -72,7 +71,7 @@ class CourseController extends Controller
      */
     public function destroy(string $id): RedirectResponse
     {
-        Course::destroy($id);
-        return redirect('courses')->with('flash_message', 'Course deleted!');   
+        Enrollment::destroy($id);
+        return redirect('enrollments')->with('flash_message', 'Enrollment deleted!');   
     }
 }
