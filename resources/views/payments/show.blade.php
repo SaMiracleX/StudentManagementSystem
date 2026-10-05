@@ -2,12 +2,12 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-            Batch Page
+            Payments Page
         </div>
         <div class="card-body">
-            <h5 class="card-title">Name: {{ $batches->name }}</h5>
-            <p class="card-text">Course: {{ $batches->course->name }}</p>
-            <p class="card-text">Start Date: {{ $batches->start_date }}</p>
+            <h5 class="card-title">Enrollment No: {{ $item->enrollment->enroll_no }}</h5>
+            <p class="card-text">Paid Date: {{ $item->paid_date }}</p>
+            <p class="card-text">Amount: {{ number_format($item->amount, 2) }}</p>
         </div>
         </hr>
     </div>

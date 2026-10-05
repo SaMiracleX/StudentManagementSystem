@@ -9,16 +9,16 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
-    {
-        Schema::create('payments', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('enrollment_id');
-            $table->date('paid_date');
-            $table->double('amount');
-            $table->timestamps();
-        });
-    }
+   public function up(): void
+{
+    Schema::create('payments', function (Blueprint $table) {
+        $table->id();
+        $table->unsignedBigInteger('enrollment_id');
+        $table->date('paid_date');
+        $table->decimal('amount', 10, 2);
+        $table->timestamps();
+    });
+}
 
     /**
      * Reverse the migrations.
